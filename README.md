@@ -34,8 +34,64 @@
         string imgUrl
         boolean isFlashSale
         int rating
-        int category_product FK
-        int promo_product FK
+        int[] category_id FK
+        int[] promo_product FK
+    }
+
+    CATEGORY_PRODUCT }o--o{ PRODUCT : has
+    CATEGORY_PRODUCT {
+        int id PK
+        string name
+    }
+
+    PROMO_PRODUCT }o--o{ PRODUCT : has
+    PROMO_PRODUCT {
+        int id PK
+        string name
+    }
+
+    TESTIMONIAL }o--|| USER : has
+    TESTIMONIAL {
+        int id PK
+        string name
+        string job_title
+        string testimoni
+        int stars
+        int User_id FK
+    }
+
+    CART }o--|| PRODUCT : has
+    CART }o--|| USER : has
+    CART {
+        int id PK
+        int qty
+        int total_price
+        int id_product FK
+        string size FK
+        string temperature FK
+        int id_user FK
+    }
+
+    SIZE ||--o{ CART : has
+    SIZE {
+        int id PK
+        string name
+    }
+
+    VARIANT ||--o{ CART : has
+    VARIANT {
+        int id PK
+        string name
+    }
+
+    ORDER |o--|{ CART : has
+    ORDER {
+        int id PK
+        int id_cart PK
+        int payment_method
+        int shipping
+        string status
+        int total_order
     }
 
 ```
