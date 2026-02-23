@@ -88,10 +88,29 @@
     ORDER {
         int id PK
         int id_cart PK
-        int payment_method
+        int payment_id FK
         int shipping
         string status
         int total_order
+    }
+
+    PAYMENT ||--o{ ORDER : has
+    PAYMENT {
+        int id
+        string name
+    }
+
+    SHIPPING ||--o{ CART : has
+    SHIPPING {
+        int id
+        string name
+        int cart_id
+    }
+
+    STATUS ||--o{ CART : has
+    STATUS {
+        int id
+        string name
     }
 
 ```
