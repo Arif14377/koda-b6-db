@@ -1,116 +1,94 @@
+# Membuat ERD, DDL, dan DML dari Mockup Project Coffee Shop
+
+## ERD
 ```mermaid
     erDiagram
 
-    USER }o--|| ROLE : has
-    USER {
-        int id PK
-        string name
-        stirng email
-        hash password
-        string phone
+    users ||--o{ transaction : do
+    users {
+        int id
+        string fullname
+        int password
         string address
-        string user_role FK
+        string phone
+        string picture
+        timestamp created_at
     }
 
-    ROLE {
-        int id PK
-        string name
-    }
-
-    SESSION }o--o{ USER : has
-    SESSION {
-        int id PK
-        string ip
-        int user_id FK
-    }
-
-    PRODUCT {
-        int id PK
-        string alt
+    products ||--o{ transaction_product : has
+    products {
+        int id
         string name
         string description
-        int oldPrice
+        int quantity
         int price
-        string imgUrl
-        boolean isFlashSale
+    }
+    product_variant ||--o{ products : has
+    product_variant {
+        int id
+        string name
+        int add_price
+    }
+
+    product_size ||--o{ products : has
+    product_size {
+        int id
+        string name
+        int add_price
+    }
+
+    product_images }|--|| products : has
+    product_images {
+        int id
+        string path
+    }
+
+    reviews }o--|| products : has
+    reviews {
+        int id
+        string messages
         int rating
-        int[] category_id FK
-        int[] promo_product FK
     }
 
-    CATEGORY_PRODUCT }o--o{ PRODUCT : has
-    CATEGORY_PRODUCT {
-        int id PK
-        string name
-    }
-
-    PROMO_PRODUCT }o--o{ PRODUCT : has
-    PROMO_PRODUCT {
-        int id PK
-        string name
-    }
-
-    TESTIMONIAL }o--|| USER : has
-    TESTIMONIAL {
-        int id PK
-        string name
-        string job_title
-        string testimoni
-        int stars
-        int User_id FK
-    }
-
-    CART }o--|| PRODUCT : has
-    CART }o--|| USER : has
-    CART {
-        int id PK
-        int qty
-        int total_price
-        int id_product FK
-        string size FK
-        string temperature FK
-        int id_user FK
-    }
-
-    SIZE ||--o{ CART : has
-    SIZE {
-        int id PK
-        string name
-    }
-
-    VARIANT ||--o{ CART : has
-    VARIANT {
-        int id PK
-        string name
-    }
-
-    ORDER |o--|{ CART : has
-    ORDER {
-        int id PK
-        int id_cart PK
-        int payment_id FK
-        int shipping
+    transaction ||--|{ transaction_product : has
+    transaction {
+        string transaction_id
+        string delivery_method
+        string full_name
+        string email
+        string address
+        int sub_total
+        int tax
+        int total
+        timestamp tanggal
         string status
-        int total_order
+        string payment_method
     }
 
-    PAYMENT ||--o{ ORDER : has
-    PAYMENT {
+    transaction_product {
         int id
-        string name
+        int product_id
+        int quantity
+        string size_id
+        string variant_id
+        int price
+        string transaction_id
     }
 
-    SHIPPING ||--o{ CART : has
-    SHIPPING {
+    discount }o--o| products : has
+    discount {
         int id
-        string name
-        int cart_id
+        boolean flash_sale
+        int discount_rate
+        string description
     }
 
-    STATUS ||--o{ CART : has
-    STATUS {
-        int id
-        string name
+    cart }o--|| users : has
+    cart }o--o| products : saving
+    cart {
+        int cart
+        int user_id
+        int products_id
     }
 
 ```
