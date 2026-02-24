@@ -8,6 +8,7 @@
     users {
         int id
         string fullname
+        string email
         int password
         string address
         string phone
@@ -69,8 +70,8 @@
         int id
         int product_id
         int quantity
-        string size_id
-        string variant_id
+        int size_id
+        int variant_id
         int price
         string transaction_id
     }
@@ -86,7 +87,7 @@
     cart }o--|| users : has
     cart }o--o| products : saving
     cart {
-        int cart
+        int id
         int user_id
         int products_id
     }
