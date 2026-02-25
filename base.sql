@@ -1,13 +1,13 @@
 select * from products;
-select * from product_variant;
-select * from product_size;
+select * from product_variant; -- baru 2
+select * from product_size; -- baru 3
 select * from product_images;
 select * from users;
 select * from cart;
 select * from reviews;
 select * from transactions;
 select * from transaction_product;
-select * from categories;
+select * from categories; -- baru 5
 select * from product_category;
 
 create table products (
@@ -166,6 +166,21 @@ insert into products(name, description, quantity, price) values
 -- fill product_variant
 insert into product_variant(name, add_price) values
     -- ('ice', 500), ('hot', 0);
+    ('less sugar', 0),
+    ('normal sugar', 0),
+    ('extra sugar', 1000),
+    ('less ice', 0),
+    ('normal ice', 0),
+    ('extra ice', 500),
+    ('soy milk', 3000),
+    ('extra sauce', 3000),
+    ('extra cheese', 4000),
+    ('no onion', 0),
+    ('spicy level 1', 0),
+    ('spicy level 2', 0),
+    ('spicy level 3', 0),
+    ('double meat', 8000),
+    ('extra topping', 5000);
     
 
 -- fill product_size
