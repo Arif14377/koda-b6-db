@@ -93,3 +93,9 @@
     }
 
 ```
+
+## Minitask query.sql
+### Menampilkan 1 data product dengan kolom : nama product, variant, size, total price
+![alt text](assets/img/get-1-row-product.png)
+
+###
